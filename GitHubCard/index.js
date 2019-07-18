@@ -40,7 +40,7 @@ const cards = document.querySelector('.cards');
   // add class name to elements
   card.classList.add('card');
   img.classList.add('img');
-  cardInfo.classList.add('card-info');
+  cardInfo.classList.add('card');
   name.classList.add('name');
   userName.classList.add('username');
   location.classList.add('p');
