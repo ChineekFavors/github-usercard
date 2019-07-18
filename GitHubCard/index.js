@@ -2,6 +2,10 @@
            (replacing the palceholder with your Github name):
            https://api.github.com/users/<your name>
 */
+      axios.get('https://api.github.com/users/ChineekFavors')
+        .then(response => {
+          console.log(response.data);
+        });
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
@@ -10,6 +14,53 @@
    Skip to Step 3.
 */
 
+  //reference to empty div with class name cards to place cards in
+const cards = document.querySelector('.cards');
+
+//function creates and return card      
+function componentCreator(){
+  
+  //created elements
+  const card = document.createElement('div');
+  const img = document.createElement('img');
+  const name = document.createElement('h1');
+  const userName = document.createElement('p');
+  const location = document.createElement('p');
+  const profile = document.createElement('p');
+  const followers = document.createElement('p');
+  const following = document.createElement('p');
+  const bio = document.createElement('p');
+  // add class name to elements
+  card.classList.add('card');
+  img.classList.add('img');
+  name.classList.add('name');
+  userName.classList.add('username');
+  location.classList.add('p');
+  profile.classList.add('p');
+  followers.classList.add('p');
+  following.classList.add('p');
+  bio.classList.add('p');
+    // setting content for elements
+  img.src =  "https://avatars3.githubusercontent.com/u/45578867?v=4";
+  name.textContent = 'name ';
+  userName.textContent = `userName text`;
+  location.textContent = `Location:`;
+  profile.textContent = `Profile:`;
+  followers.textContent = `Followers:`;
+  following.textContent = `Following:`;
+  bio.textContent = `Bio:`;
+  // appending
+  card.appendChild(img);
+  card.appendChild(name);
+  name.appendChild(userName);
+  userName.appendChild(location);
+  location.appendChild(profile);
+  profile.appendChild(following);
+  following.appendChild(bio);
+
+    return cards.appendChild(card);
+}
+componentCreator();
 /* Step 4: Pass the data received from Github into your function, 
            create a new component and add it to the DOM as a child of .cards
 */
