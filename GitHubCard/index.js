@@ -2,10 +2,16 @@
            (replacing the palceholder with your Github name):
            https://api.github.com/users/<your name>
 */
-      axios.get('https://api.github.com/users/ChineekFavors')
-        .then(response => {
-          console.log(response.data);
-        });
+const axiosPromise = axios.get('https://api.github.com/users/ChineekFavors');
+
+axiosPromise
+  .then(response => {
+      console.log(response.data);
+      componentCreator(response);
+  })
+  .catch(error => {
+      cosole.log(`error: ${error}`);
+  })
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
@@ -18,13 +24,13 @@
 const cards = document.querySelector('.cards');
 
 //function creates and return card      
-function componentCreator(){
+function componentCreator(response){
   
   //created elements
   const card = document.createElement('div');
   const img = document.createElement('img');
   const name = document.createElement('h1');
-  const userName = document.createElement('p');
+  const userName = document.createElement('h2');
   const location = document.createElement('p');
   const profile = document.createElement('p');
   const followers = document.createElement('p');
@@ -42,25 +48,26 @@ function componentCreator(){
   bio.classList.add('p');
     // setting content for elements
   img.src =  "https://avatars3.githubusercontent.com/u/45578867?v=4";
-  name.textContent = 'name ';
-  userName.textContent = `userName text`;
-  location.textContent = `Location:`;
-  profile.textContent = `Profile:`;
-  followers.textContent = `Followers:`;
-  following.textContent = `Following:`;
-  bio.textContent = `Bio:`;
+  name.textContent = `${response.data.name}`;
+  userName.textContent = `${response.data.login}`;
+  location.textContent = `Location: ${response.data.location}`;
+  profile.textContent = `Profile: ${response.data.url}`;
+  followers.textContent = `Followers: ${response.data.followers}`;
+  following.textContent = `Following: ${response.data.following}`;
+  bio.textContent = `Bio: ${response.data.bio}`;
   // appending
   card.appendChild(img);
   card.appendChild(name);
   name.appendChild(userName);
   userName.appendChild(location);
   location.appendChild(profile);
-  profile.appendChild(following);
+  profile.appendChild(followers);
+  followers.appendChild(following);
   following.appendChild(bio);
 
     return cards.appendChild(card);
 }
-componentCreator();
+
 /* Step 4: Pass the data received from Github into your function, 
            create a new component and add it to the DOM as a child of .cards
 */
